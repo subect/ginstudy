@@ -3,12 +3,12 @@ package v1
 import (
 	"gindemo/models"
 	"gindemo/pkg/e"
+	"gindemo/pkg/logging"
 	"gindemo/pkg/setting"
 	"gindemo/pkg/util"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
-	"log"
 	"net/http"
 )
 
@@ -75,7 +75,7 @@ func EditTag(c *gin.Context) {
 	name := c.Query("name")
 	modifiedBy := c.Query("modified_by")
 
-	log.Printf("id:%s,name:%s,modifiedBy:%s", id, name, modifiedBy)
+	logging.Info("id:%s,name:%s,modifiedBy:%s", id, name, modifiedBy)
 
 	valid := validation.Validation{}
 
@@ -103,7 +103,7 @@ func EditTag(c *gin.Context) {
 				data["state"] = state
 			}
 
-			log.Printf("data:%s", data)
+			logging.Info("data:%s", data)
 			models.EditTag(id, data)
 		} else {
 			code = e.ERROR_NOT_EXIST_TAG
