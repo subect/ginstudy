@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/jinzhu/gorm"
+	"log"
 	"time"
 )
 
@@ -14,6 +15,7 @@ type Tag struct {
 }
 
 func GetTag(pageNum int, pageSize int, maps interface{}) (tags []Tag) {
+	log.Printf("pageNum: %d, pageSize: %d", pageNum, pageSize)
 	db.Where(maps).Offset(pageNum).Limit(pageSize).Find(&tags)
 	return
 }
@@ -60,6 +62,15 @@ func ExistTagByID(id int) bool {
 		return true
 	}
 
+	return false
+}
+
+func ExistArticleByID(id int) bool {
+	var artical Article
+	db.Select("id").Where("id = ?", id).First(&artical)
+	if artical.ID > 0 {
+		return true
+	}
 	return false
 }
 
