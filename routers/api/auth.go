@@ -15,6 +15,7 @@ type auth struct {
 	Password string `valid:"Required; MaxSize(50)"`
 }
 
+// GetAuth @Summary: 获取路由
 func GetAuth(c *gin.Context) {
 	username := c.Query("username")
 	password := c.Query("password")

@@ -1,31 +1,27 @@
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type Article struct {
 	Model
-	TagID      int    `json:"tag_id" gorm:"index"`
-	Tag        Tag    `json:"tag"`
-	Title      string `json:"title"`
-	Desc       string `json:"desc"`
-	Content    string `json:"content"`
-	CreatedBy  string `json:"created_by"`
-	ModifiedBy string `json:"modified_by"`
-	State      int    `json:"state"`
+	TagID         int    `json:"tag_id" gorm:"index"`
+	Tag           Tag    `json:"tag"`
+	Title         string `json:"title"`
+	Desc          string `json:"desc"`
+	Content       string `json:"content"`
+	CreatedBy     string `json:"created_by"`
+	ModifiedBy    string `json:"modified_by"`
+	State         int    `json:"state"`
+	CoverImageUrl string `json:"cover_image_url"`
 }
 
-func (a *Article) BeforeCreate(scope *gorm.Scope) error {
-	scope.SetColumn("CreatedOn", time.Now().Unix())
-	return nil
-}
-
-func (a *Article) BeforeUpdate(scope *gorm.Scope) error {
-	scope.SetColumn("ModifiedOn", time.Now().Unix())
-	return nil
-}
+//func (a *Article) BeforeCreate(scope *gorm.Scope) error {
+//	scope.SetColumn("CreatedOn", time.Now().Unix())
+//	return nil
+//}
+//
+//func (a *Article) BeforeUpdate(scope *gorm.Scope) error {
+//	scope.SetColumn("ModifiedOn", time.Now().Unix())
+//	return nil
+//}
 
 func GetActile(articleId int) (acticle Article) {
 	db.Where("id = ?", articleId).First(&acticle)
@@ -45,12 +41,13 @@ func GetArticlesTotal(condition interface{}) (total int) {
 
 func AddArticle(condition map[string]interface{}) bool {
 	db.Create(&Article{
-		TagID:     condition["tag_id"].(int),
-		Title:     condition["title"].(string),
-		Desc:      condition["desc"].(string),
-		Content:   condition["content"].(string),
-		CreatedBy: condition["created_by"].(string),
-		State:     condition["state"].(int),
+		TagID:         condition["tag_id"].(int),
+		Title:         condition["title"].(string),
+		Desc:          condition["desc"].(string),
+		Content:       condition["content"].(string),
+		CreatedBy:     condition["created_by"].(string),
+		State:         condition["state"].(int),
+		CoverImageUrl: condition["cover_image_url"].(string),
 	})
 	return true
 }
@@ -62,5 +59,11 @@ func EditArticle(id int, condition interface{}) bool {
 
 func DeleteArticle(id int) bool {
 	db.Where("id = ?", id).Delete(&Article{})
+	return true
+}
+
+func ClearAllArticle() bool {
+	//进行硬删除需使用 Unscoped()
+	db.Unscoped().Where("deleted_on != ?", 0).Delete(&Article{})
 	return true
 }

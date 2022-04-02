@@ -1,0 +1,213 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {}
+    },
+    "paths": {
+        "/api/v1/tag/:id": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "查询单篇文章",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tags": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "查询多篇文章",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "state",
+                        "name": "state",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tag_id",
+                        "name": "tag_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "新增文章",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "state",
+                        "name": "state",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tag_id",
+                        "name": "tag_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "title",
+                        "name": "title",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "desc",
+                        "name": "desc",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "content",
+                        "name": "content",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "created_by",
+                        "name": "created_by",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tags/:id": {
+            "put": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "修改文章",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tag_id",
+                        "name": "tag_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "title",
+                        "name": "title",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "desc",
+                        "name": "desc",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "content",
+                        "name": "content",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "modified_by",
+                        "name": "modified_by",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "删除文章",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "gin.H": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    }
+}

@@ -1,0 +1,142 @@
+definitions:
+  gin.H:
+    additionalProperties: true
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /api/v1/tag/:id:
+    get:
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: 查询单篇文章
+  /api/v1/tags:
+    get:
+      parameters:
+      - description: state
+        in: query
+        name: state
+        required: true
+        type: string
+      - description: tag_id
+        in: query
+        name: tag_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: 查询多篇文章
+    post:
+      parameters:
+      - description: state
+        in: query
+        name: state
+        required: true
+        type: string
+      - description: tag_id
+        in: query
+        name: tag_id
+        required: true
+        type: string
+      - description: title
+        in: query
+        name: title
+        required: true
+        type: string
+      - description: desc
+        in: query
+        name: desc
+        required: true
+        type: string
+      - description: content
+        in: query
+        name: content
+        required: true
+        type: string
+      - description: created_by
+        in: query
+        name: created_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: 新增文章
+  /api/v1/tags/:id:
+    delete:
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: 删除文章
+    put:
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: tag_id
+        in: query
+        name: tag_id
+        required: true
+        type: string
+      - description: title
+        in: query
+        name: title
+        required: true
+        type: string
+      - description: desc
+        in: query
+        name: desc
+        required: true
+        type: string
+      - description: content
+        in: query
+        name: content
+        required: true
+        type: string
+      - description: modified_by
+        in: query
+        name: modified_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: 修改文章
+swagger: "2.0"
